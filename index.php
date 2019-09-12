@@ -1,5 +1,4 @@
 <?php
-
 class Worker 
 {
 	private $name;
@@ -7,51 +6,60 @@ class Worker
 	private $salary;
 	
 	public function setName($name) {
-		return $this->name = $name;
+		$this->name = $name;
 	}
 	public function getName() {
 		return $this->name;
 	}
+	private function checkAge($age)
+	{ 
+		if ($age >= 1 && $age < 100) {
+			return $age = true;
+		} else {
+			return $age = false;
+		}
+    }
+	
+	
 	public function setAge($age) {
 		if ($this->checkAge($age)) {
-			return $this->age = $age;
-		} 
+		$this->age = $age;
+		}
 	}
 	public function getAge() {
 		return $this->age;
 	}
 	public function setSalary($salary) {
-		return $this->salary = $salary;
+		$this->salary = $salary;
 	}
 	public function getSalary() {
 		return $this->salary;
 	}
-	private function checkAge($age) {
-		if ($age > 1 && $age < 100) {
-			$this->setAge($age); 
-			return true;
-		} else {
-			return false;
-		}
+	
+
+	
+	public function NameSalary() {	
+		 printf(
+            'Имя: %s, возраст: %s<br>',
+            $this->getName(),
+            $this->getAge()
+        );
 	}
 }
-
-$ivan = new worker;
-	$name = 'Иван';
-	$ivan->getName = $name;
-	$age = 25;
-	$ivan->getAge = $age;
-	$salary = 1000;
-	$ivan->setSalary = $salary;
+$ivan = new Worker;
+	$ivan->setName('Иван');
+	$ivan->setAge(25);
+	$ivan->setSalary(1000);
 	
-$vasa = new worker;
-	$name = 'Вася';
-	$vasa->getName = $name;
-	$age = 26;
-	$ivan->getAge = $age;
-	$salary = 2000;
-	$vasa->setSalary = $salary;
+$vasa = new Worker;
+	$vasa->setName('Вася');
+	$vasa->setAge(26);
+	$vasa->setSalary(2000);	
+	
+$sumAge = $vasa->getAge() + $ivan->getAge();
+$sumSalary = $vasa->getSalary() + $ivan->getSalary();
+echo 'Сумма зарплат ' . $sumSalary . '<br>';
+echo 'Сумма возрастов ' . $sumAge . '<br>';
 
-
-$result = $vasa->setSalary + $ivan->setSalary;
-echo $result;
+$ivan->NameSalary();
+$vasa->NameSalary();
